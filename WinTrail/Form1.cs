@@ -40,6 +40,9 @@ namespace WinTrail
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            mynotifyicon = new NotifyIcon();
+            mynotifyicon.BalloonTipTitle = "WinTrail";
+
             interfaceIPtoListen = Interaction.InputBox("Dinlenecek arayüz IPsi", "Dinlenecek arayüz IPsi", "X.X.X.X", 0, 0);
 
             mainSocket = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.IP);
@@ -91,8 +94,11 @@ namespace WinTrail
             {
                 if ( lines[index].Contains(ipHeader.DestinationAddress.ToString()))
                 {
-                    if(!listBox1.Items.Contains(ipHeader.DestinationAddress.ToString()))
-                    listBox1.Items.Add(ipHeader.DestinationAddress.ToString());
+                    if (!listBox1.Items.Contains(ipHeader.DestinationAddress.ToString()))
+                    {
+                        listBox1.Items.Add(ipHeader.DestinationAddress.ToString());
+                        MessageBox.Show("Alarm!");
+                    }
                 }
          
             }
@@ -117,6 +123,27 @@ namespace WinTrail
         private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        NotifyIcon mynotifyicon;
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (FormWindowState.Minimized == this.WindowState)
+            {
+                mynotifyicon.Visible = true;
+                mynotifyicon.ShowBalloonTip(500);
+                this.Hide();
+            }
+            else if (FormWindowState.Normal == this.WindowState)
+            {
+                mynotifyicon.Visible = false;
+            }
         }
     }
 }

@@ -1,0 +1,6 @@
+﻿TODO
+----
+- DB genişletilecek [tüm maltrail DB'sini kapsayacak şekilde]
+- IP'nin yanına URL desteği getirilecek
+- Tray icon'a aktarılacak
+- Yeni kayıtta alarming
