@@ -1,11 +1,4 @@
-﻿###
-# Alienvault IP Reputation Database
-# https://reputation.alienvault.com/
-###
-
-# Generic format
-
-46.4.123.15 # Malicious Host DE,,51.0,9.0
+﻿46.4.123.15 # Malicious Host DE,,51.0,9.0
 222.136.71.19 # Scanning Host CN,Zhengzhou,34.6836013794,113.532501221
 27.254.67.157 # Scanning Host;Malicious Host TH,,13.75,100.466697693
 180.252.0.245 # Malicious Host;Scanning Host ID,,-6.17500019073,106.828598022

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using System.Net.Sockets;
 using System.Net;
+using System.IO;
 
 namespace WinTrail
 {
@@ -81,8 +82,21 @@ namespace WinTrail
 
         private void ParseData(byte[] byteData, int nReceived)
         {
+
             IPHeader ipHeader = new IPHeader(byteData, nReceived);
-            listBox1.Items.Add(ipHeader.DestinationAddress.ToString());
+
+            var lines = File.ReadAllLines(@"c:\Users\Furkan\Documents\Visual Studio 2015\Projects\WinTrail\WinTrail\imzalar\alienvault.txt");
+
+            for (int index = 0; index < lines.Length; index++)
+            {
+                if ( lines[index].Contains(ipHeader.DestinationAddress.ToString()))
+                {
+                    if(!listBox1.Items.Contains(ipHeader.DestinationAddress.ToString()))
+                    listBox1.Items.Add(ipHeader.DestinationAddress.ToString());
+                }
+         
+            }
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -98,6 +112,11 @@ namespace WinTrail
         private void hakkındaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Furkan Çalışkan, 2016", "Hakkında");
+        }
+
+        private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
