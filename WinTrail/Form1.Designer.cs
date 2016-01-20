@@ -32,6 +32,7 @@
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imzalarıGüncelleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hakkındaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,12 +68,24 @@
             this.hakkındaToolStripMenuItem.Name = "hakkındaToolStripMenuItem";
             this.hakkındaToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.hakkındaToolStripMenuItem.Text = "Hakkında";
+            this.hakkındaToolStripMenuItem.Click += new System.EventHandler(this.hakkındaToolStripMenuItem_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 18;
+            this.listBox1.Location = new System.Drawing.Point(12, 37);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(460, 274);
+            this.listBox1.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 335);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -91,6 +104,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imzalarıGüncelleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hakkındaToolStripMenuItem;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 
