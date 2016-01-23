@@ -18,7 +18,6 @@ namespace WinTrail
     // http://www.codeproject.com/Articles/17031/A-Network-Sniffer-in-C
     public partial class Form1 : Form
     {
-        string[] infectedIPs = { "104.28.29.6"};
         private byte[] byteData = new byte[4096];
         string interfaceIPtoListen;
         private Socket mainSocket;
@@ -26,6 +25,7 @@ namespace WinTrail
         public Form1()
         {
             InitializeComponent();
+        
         }
 
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
@@ -35,15 +35,13 @@ namespace WinTrail
 
         private void imzalarıGüncelleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            // maltrail kaynaklarından toplayıp > imzalar.txt'ye yazacak :)
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
-            mynotifyicon = new NotifyIcon();
-            mynotifyicon.BalloonTipTitle = "WinTrail";
+        {  
 
-            interfaceIPtoListen = Interaction.InputBox("Dinlenecek arayüz IPsi", "Dinlenecek arayüz IPsi", "X.X.X.X", 0, 0);
+            interfaceIPtoListen = Interaction.InputBox("Interface to listen", "Interface to listen", "X.X.X.X", 0, 0);
 
             mainSocket = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.IP);
             mainSocket.Bind(new IPEndPoint(IPAddress.Parse(interfaceIPtoListen), 0));
@@ -60,16 +58,11 @@ namespace WinTrail
             try
             {
                 int nReceived = mainSocket.EndReceive(ar);
-
-                //Analyze the bytes received...
-                
+                              
                 ParseData(byteData, nReceived);
-
-    
+                    
                 byteData = new byte[4096];
 
-                    //Another call to BeginReceive so that we continue to receive the incoming
-                    //packets
                 mainSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None,
                         new AsyncCallback(OnReceive), null);
 
@@ -88,7 +81,7 @@ namespace WinTrail
 
             IPHeader ipHeader = new IPHeader(byteData, nReceived);
 
-            var lines = File.ReadAllLines(@"c:\Users\Furkan\Documents\Visual Studio 2015\Projects\WinTrail\WinTrail\imzalar\alienvault.txt");
+            var lines = File.ReadAllLines(@".\imzalar.txt");
 
             for (int index = 0; index < lines.Length; index++)
             {
@@ -97,7 +90,7 @@ namespace WinTrail
                     if (!listBox1.Items.Contains(ipHeader.DestinationAddress.ToString()))
                     {
                         listBox1.Items.Add(ipHeader.DestinationAddress.ToString());
-                        MessageBox.Show("Alarm!");
+
                     }
                 }
          
@@ -130,20 +123,6 @@ namespace WinTrail
 
         }
 
-        NotifyIcon mynotifyicon;
 
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            if (FormWindowState.Minimized == this.WindowState)
-            {
-                mynotifyicon.Visible = true;
-                mynotifyicon.ShowBalloonTip(500);
-                this.Hide();
-            }
-            else if (FormWindowState.Normal == this.WindowState)
-            {
-                mynotifyicon.Visible = false;
-            }
-        }
     }
 }
