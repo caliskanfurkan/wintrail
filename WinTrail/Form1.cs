@@ -78,7 +78,7 @@ namespace WinTrail
 
         private void ParseData(byte[] byteData, int nReceived)
         {
-
+            //
             IPHeader ipHeader = new IPHeader(byteData, nReceived);
 
             var lines = File.ReadAllLines(@".\imzalar.txt");
