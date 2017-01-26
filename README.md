@@ -2,6 +2,6 @@
 Maltrail for single Windows PC
 
 
-Anti-malware software for Windows PCs.
+Malware detection software for a single Windows PC.
 
-Uses maltrail threat feeds and catches if there is a traffic towards malicious IPs
+Uses maltrail threat feeds and alerts if there is a traffic towards malicious IPs
